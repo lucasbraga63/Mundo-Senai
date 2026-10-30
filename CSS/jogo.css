@@ -1,0 +1,735 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fonte-titulo: "Press Start 2P", "Courier New", monospace;
+    --fonte-texto: "VT323", "Courier New", monospace;
+    --fundo-body: rgb(16, 22, 63);
+    --cor-h3: yellow;
+    --cor-p-menu: rgb(9, 148, 9);
+    --fundo-menu: rgb(0, 0, 139);
+    --titulo-status: rgb(175, 174, 174);
+    --cor-status: rgb(240, 238, 238);
+
+    /* cenário */
+    --borda: #111;
+    --amarelo: #f5f504;
+    --piso-plataforma: #3b4a78;
+    --cinza-metal: #8f9ab3;
+    --cor-motor: #d9472b;
+    --cor-rodas: #3a3a3a;
+    --cor-portas: #2f6fd4;
+    --cor-teto: #8f9ab3;
+}
+
+body {
+    font-family: var(--fonte-texto);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--fundo-body);
+    gap: 30px;
+    min-height: 100vh;
+}
+
+/* ================= MENU / INFORMAÇÕES DA PARTIDA ================= */
+.menu {
+    width: 100%;
+    min-height: 70px;
+    display: flex;
+    background-color: var(--fundo-menu);
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid rgb(37, 150, 224);
+    flex-wrap: wrap;
+}
+
+.menu .sessaoModelo {
+    width: auto;
+    min-height: 50px;
+    padding: 10px 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.menu .sessaoModelo p {
+    color: var(--cor-p-menu);
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.menu .sessaoModelo h3 {
+    color: var(--cor-h3);
+    font-family: var(--fonte-titulo);
+    font-size: 13px;
+}
+
+.menu .statusPartida {
+    flex: 1;
+    display: flex;
+    padding: 10px 20px;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+    min-height: 50px;
+}
+
+.informacao {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu .informacao h4 {
+    font-family: var(--fonte-titulo);
+    font-size: 12px;
+    color: var(--titulo-status);
+}
+
+.menu .informacao span {
+    font-family: var(--fonte-texto);
+    color: var(--cor-status);
+    font-size: 30px;
+}
+
+/* ================= CONTAINER DO JOGO ================= */
+.containerJogo {
+    width: 95%;
+    flex: 1;
+    min-height: 640px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-image: url(../assets/cenarios/ChaoFabrica.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cenário principal: 3 colunas (esquerda / plataforma / estoque) */
+.cenario {
+    position: relative;
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 24px;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+/* Rótulos em fonte pixel */
+.rotulo {
+    font-family: var(--fonte-titulo);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--cor-h3);
+    text-align: center;
+}
+
+.rotuloBranco {
+    color: #fff;
+}
+
+/* ================= PEDIDOS ================= */
+.quadroPedidos {
+    background: #5a3a1c;
+    border: 6px solid var(--borda);
+    padding: 12px;
+}
+
+.quadroInterno {
+    background: #2d5e3a;
+    border: 4px solid var(--borda);
+    padding: 14px 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.quadroInterno h2 {
+    font-family: var(--fonte-titulo);
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+}
+
+.notas {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.nota {
+    flex: 1;
+    max-width: 92px;
+    aspect-ratio: 92 / 100;
+    padding: 8px 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nota span {
+    font-family: var(--fonte-titulo);
+    font-size: 8px;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.nota i {
+    display: block;
+    height: 6px;
+    background: #8a8a8a;
+}
+
+.notaAmarela { background: #ffee88; }
+.notaRosa    { background: #ffd0e0; }
+.notaAzul    { background: #c4e4ff; }
+
+/* ================= MÁQUINAS ================= */
+.blocoMaquinas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.maquinas {
+    display: flex;
+    gap: 16px;
+}
+
+.maquina {
+    flex: 1;
+    max-width: 170px;
+    background: #6e7a99;
+    border: 6px solid var(--borda);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.telaMaquina {
+    background: #38405f;
+    border: 3px solid var(--borda);
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.mostrador {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #aab4cc;
+    border: 3px solid var(--borda);
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+}
+
+.botao {
+    flex: 1;
+    height: 26px;
+    border: 2px solid var(--borda);
+}
+
+.botao.vermelho { background: #c0392b; }
+.botao.verde    { background: #27ae60; }
+
+/* ================= PLATAFORMA DE MONTAGEM ================= */
+.plataforma {
+    /* faixa de segurança amarela e preta nos 4 lados */
+    border: 14px solid var(--borda);
+    border-image: repeating-linear-gradient(45deg, var(--amarelo) 0 14px, var(--borda) 14px 28px) 14;
+}
+
+.pisoPlataforma {
+    background: var(--piso-plataforma);
+    padding: 7% 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--borda);
+}
+
+/* --- carro em montagem (vista de cima) --- */
+.carro {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 2.1 / 1;
+    background: var(--cinza-metal);
+    border: 4px solid var(--borda);
+}
+
+.peca {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fonte-titulo);
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    border: 2px dashed rgba(255, 255, 255, 0.75);
+    background: transparent;
+}
+
+.peca.instalada {
+    border: 3px solid var(--borda);
+}
+
+/* posições das peças (em % para acompanhar o tamanho do carro) */
+.motor      { left: 4%;  top: 18%; width: 30%; height: 64%; }
+.teto       { left: 39%; top: 24%; width: 40%; height: 52%; }
+.portaCima  { left: 36%; top: 3%;  width: 28%; height: 15%; }
+.portaBaixo { left: 36%; bottom: 3%; width: 28%; height: 15%; }
+
+.roda { width: 17%; height: 28%; }
+.rodaTE { left: 8%;  top: -17%; }
+.rodaBE { left: 8%;  bottom: -17%; }
+.rodaTD { right: 8%; top: -17%; }
+.rodaBD { right: 8%; bottom: -17%; }
+
+/* cor de cada peça quando instalada */
+.motor.instalada { background: var(--cor-motor); color: #fff; }
+.roda.instalada  { background: #1c1c1c; }
+.porta.instalada { background: var(--cor-portas); }
+.teto.instalada  { background: var(--cor-teto); color: #111; }
+
+/* progresso */
+.progresso {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-left: 8px;
+}
+
+.etapas {
+    display: flex;
+    gap: 8px;
+}
+
+.etapa {
+    width: 28px;
+    height: 24px;
+    background: var(--piso-plataforma);
+    border: 2px solid var(--borda);
+}
+
+.etapa.ok { background: var(--amarelo); }
+
+/* ================= ESTOQUE / SAÍDA ================= */
+.estoque {
+    background: #4d5a2c;
+    border: 8px solid var(--borda);
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.prateleira {
+    display: flex;
+    justify-content: space-around;
+    padding: 4px 0 8px;
+    border-bottom: 8px solid #dcc200;
+}
+
+.caixa {
+    width: 24%;
+    aspect-ratio: 1 / 0.95;
+    background: #b98a55;
+    border: 3px solid var(--borda);
+    position: relative;
+}
+
+.caixa::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 36%;
+    height: 14%;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* Caminhão de entrega */
+.caminhao {
+    position: relative;
+    display: flex;
+    width: 82%;
+    height: 56px;
+    margin-top: 6px;
+}
+
+.carroceria {
+    flex: 1;
+    background: #f2f2f2;
+    border: 3px solid var(--borda);
+}
+
+.cabine {
+    width: 26%;
+    background: #1e90ff;
+    border: 3px solid var(--borda);
+}
+
+.rodaCaminhao {
+    position: absolute;
+    bottom: -14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--borda);
+}
+
+.rodaCaminhaoTras   { left: 10%; }
+.rodaCaminhaoFrente { right: 14%; }
+
+/* ================= JOGADOR ================= */
+/* left/top em % para o JS mover depois (ex.: style.left = "30%") */
+.jogador {
+    position: absolute;
+    left: 30%;
+    top: 66%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 5;
+}
+
+.personagem {
+    position: relative;
+    width: 72px;
+    height: 76px;
+}
+
+.capacete {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 24px;
+    background: #ffd500;
+    border: 3px solid var(--borda);
+}
+
+.rosto {
+    position: absolute;
+    left: 6px;
+    top: 24px;
+    width: 60px;
+    height: 24px;
+    background: #ffcc99;
+    border: 3px solid var(--borda);
+    border-top: none;
+}
+
+.corpoJogador {
+    position: absolute;
+    left: 0;
+    top: 48px;
+    width: 100%;
+    height: 28px;
+    background: #ff7a00;
+    border: 3px solid var(--borda);
+}
+
+.carga {
+    position: absolute;
+    right: -30px;
+    top: 52px;
+    width: 30px;
+    height: 24px;
+    background: #444;
+    border: 3px solid var(--borda);
+    display: none; /* o JS liga (display: block) quando o jogador carrega uma peça */
+}
+
+.jogador.carregando .carga { display: block; }
+
+/* ================= ÁREAS DE PEÇAS ================= */
+.areasPecas {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.areaPeca {
+    background: #2a3063;
+    border: 6px solid var(--borda);
+    display: flex;
+    flex-direction: column;
+}
+
+.areaPeca header {
+    font-family: var(--fonte-titulo);
+    font-size: 10px;
+    color: #fff;
+    text-align: center;
+    padding: 16px 6px;
+}
+
+.areaMotor header  { background: var(--cor-motor); }
+.areaRodas header  { background: var(--cor-rodas); }
+.areaPortas header { background: var(--cor-portas); }
+.areaTeto header   { background: var(--cor-teto); color: #111; }
+
+.slots {
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+    padding: 18px 12px;
+}
+
+.slot {
+    flex: 1;
+    max-width: 56px;
+    aspect-ratio: 1;
+    border: 3px solid var(--borda);
+}
+
+.areaMotor .slot  { background: var(--cor-motor); }
+.areaRodas .slot  { background: var(--cor-rodas); }
+.areaPortas .slot { background: var(--cor-portas); }
+.areaTeto .slot   { background: var(--cor-teto); }
+
+/* slot vazio (o JS adiciona a classe quando a peça é retirada) */
+.slot.vazio {
+    background: transparent !important;
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* ================= TELAS MENORES ================= */
+@media (max-width: 1000px) {
+    .cenario {
+        grid-template-columns: 1fr;
+    }
+
+    .jogador {
+        display: none; /* até o JS posicionar o jogador no layout compacto */
+    }
+
+    .areasPecas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+/* ==========================================================
+   CSS/jogo-extra.css
+   Só o que o jogo.css ainda não tinha e o JS precisa:
+   destaque da zona, caixas vazias do estoque, peça na mão,
+   caminhão partindo, avisos e telas de início e fim.
+   (mesma fonte pixel e mesmas cores do jogo.css)
+   ========================================================== */
+
+[hidden] { display: none !important; }
+
+/* ---------- zona de interação em destaque ---------- */
+.alvo {
+    outline: 4px dashed var(--amarelo);
+    outline-offset: 4px;
+}
+
+/* ---------- pedidos além das 3 notas ---------- */
+.notas { position: relative; }
+
+.maisPedidos {
+    position: absolute;      /* no canto, para não empurrar o layout */
+    right: 0;
+    top: -30px;
+    font-family: var(--fonte-titulo);
+    font-size: 12px;
+    color: var(--amarelo);
+}
+
+/* ---------- estoque: caixa sem carro ---------- */
+.caixa.vazia {
+    background: transparent;
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.caixa.vazia::after { display: none; }
+
+/* ---------- peça nas mãos do jogador (cor da peça) ---------- */
+.jogador[data-peca="motor"] .carga { background: var(--cor-motor); }
+.jogador[data-peca="roda"]  .carga { background: var(--cor-rodas); }
+.jogador[data-peca="porta"] .carga { background: var(--cor-portas); }
+.jogador[data-peca="teto"]  .carga { background: var(--cor-teto); }
+
+/* dica "E · PEGAR MOTOR" sobre a cabeça do jogador */
+.dicaJogador {
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    padding: 6px 8px;
+    background: #fff;
+    border: 3px solid var(--borda);
+    font-family: var(--fonte-titulo);
+    font-size: 8px;
+    color: #111;
+    white-space: nowrap;
+}
+
+.dicaJogador.mostrar { display: block; }
+
+/* ---------- caminhão partindo (ao entregar um carro) ---------- */
+.caminhao.partindo { animation: caminhaoParte 0.9s steps(9); }
+
+@keyframes caminhaoParte {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(60px); }
+    100% { transform: translateX(0); }
+}
+
+/* ---------- avisos ---------- */
+.avisoJogo {
+    position: fixed;
+    top: 92px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    max-width: 90vw;
+    padding: 10px 16px;
+    background: var(--fundo-menu);
+    border: 4px solid #fff;
+    box-shadow: 4px 4px 0 var(--borda);
+    font-family: var(--fonte-titulo);
+    font-size: 10px;
+    line-height: 1.6;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.avisoJogo.mostrar { opacity: 1; }
+.avisoJogo.ok   { border-color: #27ae60; color: #7dff7d; }
+.avisoJogo.erro { border-color: #c0392b; color: #ff9a9a; }
+
+/* ---------- telas de início e fim ---------- */
+.telaJogo {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    overflow-y: auto;
+    background: rgba(4, 4, 31, 0.86);
+}
+
+.caixaJogo {
+    width: min(640px, 100%);
+    padding: 24px 28px;
+    background: var(--fundo-menu);
+    border: 4px solid rgb(37, 150, 224);
+    box-shadow: 6px 6px 0 var(--borda);
+    text-align: center;
+    color: #fff;
+}
+
+.caixaJogo h1 {
+    margin: 10px 0 18px;
+    font-family: var(--fonte-titulo);
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.subJogo {
+    font-family: var(--fonte-titulo);
+    font-size: 10px;
+    color: var(--cor-h3);
+}
+
+.caixaJogo ul {
+    margin: 0 0 18px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    font-size: 24px;
+    line-height: 1.25;
+}
+
+.caixaJogo li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+.caixaJogo li::before { content: ""; position: absolute; left: 0; top: 9px; width: 9px; height: 9px; background: var(--amarelo); }
+
+.controlesJogo {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: var(--titulo-status);
+}
+
+.controlesJogo span {
+    padding: 1px 6px;
+    background: #fff;
+    border: 2px solid var(--borda);
+    font-family: var(--fonte-titulo);
+    font-size: 9px;
+    color: #111;
+}
+
+.caixaJogo dl {
+    margin: 0 0 16px;
+    text-align: left;
+}
+
+.caixaJogo dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 3px dashed rgba(255, 255, 255, 0.25);
+}
+
+.caixaJogo dt { font-family: var(--fonte-titulo); font-size: 9px; line-height: 1.6; color: var(--titulo-status); }
+.caixaJogo dd { font-size: 26px; line-height: 1; margin: 0; }
+
+.explicaJogo {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.explicaJogo h2 { margin-bottom: 8px; font-family: var(--fonte-titulo); font-size: 9px; color: var(--cor-h3); }
+.explicaJogo p { font-size: 22px; line-height: 1.2; }
+
+.botoesJogo { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+.botaoJogo {
+    padding: 14px 18px;
+    background: rgb(37, 150, 224);
+    border: 3px solid var(--borda);
+    box-shadow: 4px 4px 0 var(--borda);
+    font-family: var(--fonte-titulo);
+    font-size: 11px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.botaoJogo.secundario { background: #38405f; }
+.botaoJogo:hover { filter: brightness(1.15); }
+.botaoJogo:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--borda); }
+.botaoJogo:focus-visible { outline: 4px dashed var(--amarelo); outline-offset: 3px; }

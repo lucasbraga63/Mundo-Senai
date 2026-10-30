@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/jogo.css">
+    <link rel="stylesheet" href="../CSS/jogo-extra.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <title>Mundo SENAI · Jogo</title>
+
+    <!-- Scripts (a ordem importa): base do jogo, regras dos modelos e, por último, o cérebro -->
+    <script src="../JS/fabrica.js" defer></script>
+    <script src="../JS/jogador.js" defer></script>
+    <script src="../JS/producao.js" defer></script>
+    <script src="../JS/demanda.js" defer></script>
+    <script src="../JS/modelos/taylorismo.js" defer></script>
+    <script src="../JS/modelos/fordismo.js" defer></script>
+    <script src="../JS/modelos/toyotismo.js" defer></script>
+    <script src="../JS/modelos/uberizacao.js" defer></script>
+    <script src="../JS/jogo.js" defer></script>
+</head>
+
+<body>
+    <!-- ========== BARRA DE INFORMAÇÕES DA PARTIDA ========== -->
+    <header class="menu">
+        <div class="sessaoModelo">
+            <h3>Modelo:</h3>
+            <p id="nomeModelo">TAYLORISMO</p>
+        </div>
+        <div class="statusPartida">
+            <div class="informacao">
+                <h4>Demanda</h4>
+                <span id="statDemanda">3</span>
+            </div>
+            <div class="informacao">
+                <h4>Produzidos</h4>
+                <span id="statProduzidos">12</span>
+            </div>
+            <div class="informacao">
+                <h4>Entregues</h4>
+                <span id="statEntregues">0</span>
+            </div>
+            <div class="informacao">
+                <h4>Estoque</h4>
+                <span id="statEstoque">10</span>
+            </div>
+            <div class="informacao">
+                <h4>Tempo</h4>
+                <span id="statTempo">2:35</span>
+            </div>
+            <div class="informacao">
+                <h4>Desempenho</h4>
+                <span id="statDesempenho">85%</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== CENÁRIO DA FÁBRICA ========== -->
+    <main class="containerJogo" id="containerJogo">
+
+        <div class="cenario" id="cenario">
+
+            <!-- Coluna esquerda: pedidos + máquinas -->
+            <section class="coluna colEsquerda">
+                <div class="quadroPedidos" id="quadroPedidos">
+                    <div class="quadroInterno">
+                        <h2>PEDIDOS</h2>
+                        <div class="notas" id="listaPedidos">
+                            <div class="nota notaAmarela"><span>CARRO 1</span><i></i><i></i><i></i></div>
+                            <div class="nota notaRosa"><span>CARRO 2</span><i></i><i></i><i></i></div>
+                            <div class="nota notaAzul"><span>CARRO 3</span><i></i><i></i><i></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blocoMaquinas">
+                    <h3 class="rotulo rotuloBranco">MÁQUINAS</h3>
+                    <div class="maquinas" id="maquinas">
+                        <div class="maquina" data-maquina="1">
+                            <div class="telaMaquina"><span class="mostrador"></span></div>
+                            <div class="botoes"><span class="botao vermelho"></span><span class="botao verde"></span>
+                            </div>
+                        </div>
+                        <div class="maquina" data-maquina="2">
+                            <div class="telaMaquina"><span class="mostrador"></span></div>
+                            <div class="botoes"><span class="botao vermelho"></span><span class="botao verde"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coluna central: plataforma de montagem -->
+            <section class="coluna colCentro">
+                <h3 class="rotulo">PLATAFORMA DE MONTAGEM</h3>
+
+                <div class="plataforma" id="plataforma">
+                    <div class="pisoPlataforma">
+                        <!-- Carro em montagem: cada peça ganha a classe "instalada" quando colocada -->
+                        <div class="carro" id="carro">
+                            <div class="peca roda rodaTE instalada" data-peca="roda"></div>
+                            <div class="peca roda rodaBE instalada" data-peca="roda"></div>
+                            <div class="peca roda rodaTD" data-peca="roda"></div>
+                            <div class="peca roda rodaBD" data-peca="roda"></div>
+                            <div class="peca porta portaCima" data-peca="porta"></div>
+                            <div class="peca porta portaBaixo" data-peca="porta"></div>
+                            <div class="peca motor instalada" data-peca="motor">MOTOR</div>
+                            <div class="peca teto" data-peca="teto">TETO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progresso" id="progresso">
+                    <span class="rotulo rotuloBranco">PROGRESSO</span>
+                    <div class="etapas">
+                        <span class="etapa ok"></span>
+                        <span class="etapa ok"></span>
+                        <span class="etapa"></span>
+                        <span class="etapa"></span>
+                        <span class="etapa"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coluna direita: estoque / saída -->
+            <section class="coluna colDireita">
+                <h3 class="rotulo rotuloBranco">ESTOQUE / SAÍDA</h3>
+                <div class="estoque" id="estoque">
+                    <div class="prateleira">
+                        <span class="caixa"></span><span class="caixa"></span><span class="caixa"></span>
+                    </div>
+                    <div class="prateleira">
+                        <span class="caixa"></span><span class="caixa"></span><span class="caixa"></span>
+                    </div>
+                </div>
+                <div class="caminhao" id="caminhao">
+                    <div class="carroceria"></div>
+                    <div class="cabine"></div>
+                    <span class="rodaCaminhao rodaCaminhaoTras"></span>
+                    <span class="rodaCaminhao rodaCaminhaoFrente"></span>
+                </div>
+            </section>
+
+            <!-- Jogador (posição controlada depois pelo JS via left/top) -->
+            <div class="jogador" id="jogador">
+                <div class="personagem">
+                    <span class="capacete"></span>
+                    <span class="rosto"></span>
+                    <span class="corpoJogador"></span>
+                    <span class="carga"></span>
+                </div>
+                <span class="rotulo">VOCÊ</span>
+            </div>
+        </div>
+
+        <!-- ========== ÁREAS DE PEÇAS ========== -->
+        <section class="areasPecas" id="areasPecas">
+            <div class="areaPeca areaMotor" data-area="motor">
+                <header>ÁREA: MOTOR</header>
+                <div class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span><span
+                        class="slot"></span></div>
+            </div>
+            <div class="areaPeca areaRodas" data-area="rodas">
+                <header>ÁREA: RODAS</header>
+                <div class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span><span
+                        class="slot"></span></div>
+            </div>
+            <div class="areaPeca areaPortas" data-area="portas">
+                <header>ÁREA: PORTAS</header>
+                <div class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span><span
+                        class="slot"></span></div>
+            </div>
+            <div class="areaPeca areaTeto" data-area="teto">
+                <header>ÁREA: TETO</header>
+                <div class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span><span
+                        class="slot"></span></div>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>

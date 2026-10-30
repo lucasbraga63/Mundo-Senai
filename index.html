@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo SENAI</title>
+
+    <!-- Fontes pixel: Press Start 2P (títulos) e VT323 (textos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/inicio.css">
+    <script src="JS/main.js" defer></script>
+</head>
+<body>
+    <div class="fundo">
+        <main class="conteudo">
+
+            <!-- Parte de cima: logo + botão JOGAR + descrição -->
+            <section class="topo">
+                <div class="logo-area">
+                    <h1 class="titulo-jogo">
+                        <img src="assets/imagens/logo.png" alt="Mundo SENAI" class="logo">
+                    </h1>
+
+                    <button type="button" class="btn-jogar" id="btnJogar" disabled>
+                        <span class="seta" aria-hidden="true"></span>
+                        JOGAR
+                    </button>
+                    <p class="status piscando" id="status">ESCOLHA UM MODELO</p>
+                </div>
+
+                <section class="painel painel-desc" aria-labelledby="descTitulo">
+                    <header class="painel-topo">
+                        <img src="assets/icones/7527737.png" alt="" class="painel-icone">
+                        <h2 id="descTitulo">SOBRE O JOGO</h2>
+                    </header>
+                    <div class="desc-corpo">
+                        <div class="desc-texto" id="descCorpo" aria-live="polite">
+                            <p>Monte carros e descubra como o trabalho muda em cada modelo de produção.</p>
+                            <p>Escolha um modelo abaixo para ver os detalhes.</p>
+                        </div>
+                        <!-- reserva invisível de altura (preenchida pelo JS) -->
+                        <div class="desc-reserva" id="descReserva" aria-hidden="true"></div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Parte de baixo: escolha do modelo (os cards são criados pelo JS) -->
+            <section class="painel painel-modelos" aria-labelledby="modelosTitulo">
+                <header class="painel-topo">
+                    <img src="assets/icones/7527737.png" alt="" class="painel-icone">
+                    <h2 id="modelosTitulo">ESCOLHA O MODELO DE PRODUÇÃO</h2>
+                </header>
+                <div class="cards" id="cards" role="group" aria-label="Modelos de produção">
+                    
+                </div>
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>
