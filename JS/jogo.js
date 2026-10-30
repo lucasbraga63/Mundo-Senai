@@ -18,12 +18,12 @@
 
     /* Valores padrão. Um modelo sobrescreve qualquer um em `config`. */
     const DEFAULTS = {
-        duracaoS: 150,          // duração da partida
-        velocidade: 260,        // velocidade do jogador (px/s)
+        duracaoS: 120,          // duração da partida
+        velocidade: 520,        // velocidade do jogador (px/s)
         alcance: 70,            // distância (px) para usar uma área/plataforma/caminhão
         reposicaoS: 4,          // tempo para repor uma peça numa área
-        pedidosIniciais: 3,     // pedidos já no quadro ao começar
-        intervaloPedidoS: 14    // novo pedido a cada X segundos (0 = não chegam novos)
+        pedidosIniciais: 2,     // pedidos já no quadro ao começar
+        intervaloPedidoS: 30    // novo pedido a cada X segundos (0 = não chegam novos)
     };
 
     const NOMES = { motor: 'MOTOR', roda: 'RODAS', porta: 'PORTAS', teto: 'TETO' };
@@ -180,10 +180,12 @@
 
         pegar(area) {
             if (this.jogador.carregando) return this.avisar('Você já está com uma peça. Instale ou descarte (Q).', 'erro');
+            if (this.hook('podePegar', area) === false) return;   // modelo pode barrar (ex.: Toyotismo sem pedido)
             const tipo = this.fabrica.retirar(area);
             if (!tipo) return this.avisar('Área vazia. Aguarde a reposição.', 'erro');
             this.jogador.pegar(tipo);
             this.avisar(`Pegou: ${NOMES[tipo]}`);
+            this.hook('aoPegar', tipo, area);
         }
 
         instalar() {
@@ -219,9 +221,10 @@
 
         soltar() {
             if (this.estado !== 'jogando' || !this.jogador.carregando) return;
-            this.jogador.largar();
+            const tipo = this.jogador.largar();
             this.descartadas++;
             this.avisar('Peça descartada.', 'erro');
+            this.hook('aoSoltar', tipo);
         }
 
         partirCaminhao() {

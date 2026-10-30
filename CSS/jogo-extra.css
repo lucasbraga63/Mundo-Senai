@@ -1,0 +1,9 @@
+/* Estilos extras dos modelos (Toyotismo: peça defeituosa na mão do jogador) */
+.jogador.pecaDefeituosa .carga {
+    background: #e02020 !important;
+    outline: 3px solid #ffd0d0;
+    animation: pecaDefeituosaPisca 0.5s steps(2) infinite;
+}
+@keyframes pecaDefeituosaPisca {
+    50% { filter: brightness(1.8); }
+}
