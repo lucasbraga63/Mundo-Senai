@@ -26,7 +26,7 @@
     const MS = (window.MundoSenai = window.MundoSenai || {});
     MS.modelos = MS.modelos || {};
 
-    const CHANCE_DEFEITO = 0.25;   // chance de uma peça pegada estar com defeito
+    const CHANCE_DEFEITO = 0.20;   // chance de uma peça pegada estar com defeito
     const PENA_DESPERDICIO = 5;    // pontos de desempenho perdidos por peça boa jogada fora
     const PENA_DEFEITO = 8;        // pontos perdidos por carro que saiu com defeito
     const PENA_SOBRA = 6;          // pontos perdidos por carro sobrando no estoque ao final
@@ -55,10 +55,10 @@
 
         // valores que sobrescrevem os DEFAULTS do jogo.js
         config: {
-            duracaoS: 120,
-            pedidosIniciais: 2,     // poucos pedidos: nada de estoque grande
-            intervaloPedidoS: 23,   // o cliente pede aos poucos
-            reposicaoS: 5           // áreas repõem devagar: não existe fartura de peças
+            duracaoS: 90,
+            pedidosIniciais: 1,     // poucos pedidos: nada de estoque grande
+            intervaloPedidoS: 15,   // o cliente pede aos poucos
+            reposicaoS: 2          // áreas repõem devagar: não existe fartura de peças
         },
 
         instrucoes: [
