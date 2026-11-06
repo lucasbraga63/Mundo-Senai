@@ -19,7 +19,7 @@
     /* Valores padrão. Um modelo sobrescreve qualquer um em `config`. */
     const DEFAULTS = {
         duracaoS: 120,          // duração da partida
-        velocidade: 520,        // velocidade do jogador (px/s)
+        velocidade: 850,        // velocidade do jogador (px/s)
         alcance: 70,            // distância (px) para usar uma área/plataforma/caminhão
         reposicaoS: 4,          // tempo para repor uma peça numa área
         pedidosIniciais: 2,     // pedidos já no quadro ao começar
