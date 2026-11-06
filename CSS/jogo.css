@@ -58,14 +58,14 @@ body {
 
 .menu .sessaoModelo p {
     color: var(--cor-p-menu);
-    font-size: 27px;
+    font-size: 38px;
     font-weight: bold;
 }
 
 .menu .sessaoModelo h3 {
     color: var(--cor-h3);
     font-family: var(--fonte-titulo);
-    font-size: 13px;
+    font-size: 19px;
 }
 
 .menu .statusPartida {
@@ -89,14 +89,14 @@ body {
 
 .menu .informacao h4 {
     font-family: var(--fonte-titulo);
-    font-size: 12px;
+    font-size: 16px;
     color: var(--titulo-status);
 }
 
 .menu .informacao span {
     font-family: var(--fonte-texto);
     color: var(--cor-status);
-    font-size: 30px;
+    font-size: 42px;
 }
 
 /* ================= CONTAINER DO JOGO ================= */
@@ -133,7 +133,7 @@ body {
 /* Rótulos em fonte pixel */
 .rotulo {
     font-family: var(--fonte-titulo);
-    font-size: 11px;
+    font-size: 16px;
     letter-spacing: 1px;
     color: var(--cor-h3);
     text-align: center;
@@ -161,7 +161,7 @@ body {
 
 .quadroInterno h2 {
     font-family: var(--fonte-titulo);
-    font-size: 14px;
+    font-size: 20px;
     color: #fff;
     text-align: center;
 }
@@ -174,7 +174,7 @@ body {
 
 .nota {
     flex: 1;
-    max-width: 92px;
+    max-width: 124px;
     aspect-ratio: 92 / 100;
     padding: 8px 8px 0;
     display: flex;
@@ -184,7 +184,7 @@ body {
 
 .nota span {
     font-family: var(--fonte-titulo);
-    font-size: 8px;
+    font-size: 12px;
     color: #111;
     margin-bottom: 4px;
 }
@@ -284,7 +284,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: var(--fonte-titulo);
-    font-size: 8px;
+    font-size: 13px;
     color: rgba(255, 255, 255, 0.9);
     border: 2px dashed rgba(255, 255, 255, 0.75);
     background: transparent;
@@ -481,7 +481,7 @@ body {
 
 .areaPeca header {
     font-family: var(--fonte-titulo);
-    font-size: 10px;
+    font-size: 15px;
     color: #fff;
     text-align: center;
     padding: 16px 6px;
@@ -556,7 +556,7 @@ body {
     right: 0;
     top: -30px;
     font-family: var(--fonte-titulo);
-    font-size: 12px;
+    font-size: 16px;
     color: var(--amarelo);
 }
 
@@ -586,7 +586,7 @@ body {
     background: #fff;
     border: 3px solid var(--borda);
     font-family: var(--fonte-titulo);
-    font-size: 8px;
+    font-size: 12px;
     color: #111;
     white-space: nowrap;
 }
@@ -605,17 +605,17 @@ body {
 /* ---------- avisos ---------- */
 .avisoJogo {
     position: fixed;
-    top: 92px;
+    top: 140px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
     max-width: 90vw;
-    padding: 10px 16px;
+    padding: 14px 24px;
     background: var(--fundo-menu);
     border: 4px solid #fff;
     box-shadow: 4px 4px 0 var(--borda);
     font-family: var(--fonte-titulo);
-    font-size: 10px;
+    font-size: 17px;
     line-height: 1.6;
     text-align: center;
     color: #fff;
@@ -633,16 +633,21 @@ body {
     inset: 0;
     z-index: 30;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 16px;
+    padding: 2vh 2vw;
     overflow-y: auto;
     background: rgba(4, 4, 31, 0.86);
 }
 
 .caixaJogo {
-    width: min(640px, 100%);
-    padding: 24px 28px;
+    width: min(1700px, 100%);
+    min-height: 92vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3vh 4vw;
     background: var(--fundo-menu);
     border: 4px solid rgb(37, 150, 224);
     box-shadow: 6px 6px 0 var(--borda);
@@ -651,15 +656,15 @@ body {
 }
 
 .caixaJogo h1 {
-    margin: 10px 0 18px;
+    margin: 14px 0 3vh;
     font-family: var(--fonte-titulo);
-    font-size: 22px;
+    font-size: clamp(32px, 3.4vw, 60px);
     line-height: 1.4;
 }
 
 .subJogo {
     font-family: var(--fonte-titulo);
-    font-size: 10px;
+    font-size: clamp(16px, 1.3vw, 24px);
     color: var(--cor-h3);
 }
 
@@ -668,25 +673,26 @@ body {
     padding: 0;
     list-style: none;
     text-align: left;
-    font-size: 24px;
+    font-size: clamp(30px, 2.5vw, 46px);
     line-height: 1.25;
 }
 
-.caixaJogo li { margin-bottom: 8px; padding-left: 20px; position: relative; }
-.caixaJogo li::before { content: ""; position: absolute; left: 0; top: 9px; width: 9px; height: 9px; background: var(--amarelo); }
+.caixaJogo li { margin-bottom: 1.4vh; padding-left: 34px; position: relative; }
+.caixaJogo li::before { content: ""; position: absolute; left: 0; top: 0.4em; width: 16px; height: 16px; background: var(--amarelo); }
 
 .controlesJogo {
-    margin-bottom: 20px;
-    font-size: 22px;
+    margin-bottom: 3vh;
+    font-size: clamp(26px, 2vw, 36px);
+    line-height: 1.6;
     color: var(--titulo-status);
 }
 
 .controlesJogo span {
-    padding: 1px 6px;
+    padding: 2px 10px;
     background: #fff;
-    border: 2px solid var(--borda);
+    border: 3px solid var(--borda);
     font-family: var(--fonte-titulo);
-    font-size: 9px;
+    font-size: clamp(15px, 1.1vw, 20px);
     color: #111;
 }
 
@@ -699,32 +705,32 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 12px;
-    padding: 8px 0;
+    padding: 5px 0;
     border-bottom: 3px dashed rgba(255, 255, 255, 0.25);
 }
 
-.caixaJogo dt { font-family: var(--fonte-titulo); font-size: 9px; line-height: 1.6; color: var(--titulo-status); }
-.caixaJogo dd { font-size: 26px; line-height: 1; margin: 0; }
+.caixaJogo dt { font-family: var(--fonte-titulo); font-size: clamp(14px, 1vw, 18px); line-height: 1.6; color: var(--titulo-status); }
+.caixaJogo dd { font-size: clamp(28px, 1.9vw, 36px); line-height: 1; margin: 0; }
 
 .explicaJogo {
-    margin-bottom: 20px;
-    padding: 12px 14px;
+    margin-bottom: 3vh;
+    padding: 2.5vh 2vw;
     background: rgba(0, 0, 0, 0.3);
     text-align: left;
 }
 
-.explicaJogo h2 { margin-bottom: 8px; font-family: var(--fonte-titulo); font-size: 9px; color: var(--cor-h3); }
-.explicaJogo p { font-size: 22px; line-height: 1.2; }
+.explicaJogo h2 { margin-bottom: 2vh; font-family: var(--fonte-titulo); font-size: clamp(20px, 1.6vw, 30px); color: var(--cor-h3); }
+.explicaJogo p { font-size: clamp(32px, 2.5vw, 48px); line-height: 1.25; }
 
 .botoesJogo { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
 .botaoJogo {
-    padding: 14px 18px;
+    padding: 22px 32px;
     background: rgb(37, 150, 224);
     border: 3px solid var(--borda);
     box-shadow: 4px 4px 0 var(--borda);
     font-family: var(--fonte-titulo);
-    font-size: 11px;
+    font-size: clamp(18px, 1.5vw, 28px);
     color: #fff;
     cursor: pointer;
 }
@@ -733,3 +739,22 @@ body {
 .botaoJogo:hover { filter: brightness(1.15); }
 .botaoJogo:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--borda); }
 .botaoJogo:focus-visible { outline: 4px dashed var(--amarelo); outline-offset: 3px; }
+
+/* ---------- tela final: explicação em destaque + estatísticas ao lado ---------- */
+.caixaJogo:has(dl) {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+    column-gap: 3vw;
+    align-items: stretch;
+}
+
+.caixaJogo:has(dl) > .subJogo,
+.caixaJogo:has(dl) > h1,
+.caixaJogo:has(dl) > .botoesJogo { grid-column: 1 / -1; }
+
+.caixaJogo:has(dl) > dl { margin: 0 0 3vh; align-self: start; }
+.caixaJogo:has(dl) > .explicaJogo { margin: 0 0 3vh; display: flex; flex-direction: column; justify-content: center; }
+
+@media (max-width: 1000px) {
+    .caixaJogo:has(dl) { display: flex; }
+}
