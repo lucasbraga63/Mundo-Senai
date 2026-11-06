@@ -78,6 +78,7 @@
             this.jogador.aoSoltar = () => this.soltar();
 
             this.criarInterface();
+            this.guia = new MS.Guia(this);
             this.zonaAtual = null;
             this.estado = 'inicio';        // inicio | jogando | fim
             this.ultimo = 0;
@@ -140,6 +141,7 @@
             this.jogador.ativo = false;
             this.jogador.teclas.clear();
             this.fabrica.marcar(null);
+            this.guia.esconder();
             this.dica('');
             this.mostrarFim();
         }
@@ -159,6 +161,7 @@
             this.demanda.atualizar(dt);
             this.hook('aoAtualizar', dt);
             this.destacarZona();
+            this.guia.atualizar(dt);
             this.atualizarHud();
             if (this.tempo <= 0 || this.hook('fim') === true) this.terminar();
         }

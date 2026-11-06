@@ -82,6 +82,15 @@
                 estado.areasUsadas = new Set();
             },
 
+            // guia de setas: avisa quando não há o que fazer ou a peça da mão é ruim
+            guia(jogo) {
+                if (estado.pecaDefeituosa) return { texto: 'PEÇA COM DEFEITO · APERTE Q' };
+                if (!jogo.jogador.carregando && jogo.producao.feitas === 0 && jogo.demanda.total === 0) {
+                    return { texto: 'SEM PEDIDO · AGUARDE O CLIENTE' };
+                }
+                return null;
+            },
+
             // PUXADA PELO PEDIDO: não começa carro novo se o estoque já cobre os pedidos
             podePegar(jogo) {
                 const comecandoCarroNovo = jogo.producao.feitas === 0;

@@ -30,7 +30,7 @@
 
 body {
   font-family: var(--fonte-texto);
-  font-size: 24px;
+  font-size: 30px;
   line-height: 1.15;
   color: var(--branco);
   background: var(--noite);
@@ -107,7 +107,7 @@ body {
 
 .painel-topo h2 {
   font-family: var(--fonte-titulo);
-  font-size: 14px;
+  font-size: 20px;
   font-weight: normal;
   line-height: 1.5;
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
@@ -121,8 +121,8 @@ body {
 }
 
 .painel-desc {
-  flex: 0 0 380px;
-  width: 380px;
+  flex: 0 0 500px;
+  width: 500px;
 }
 
 /* O texto visível e uma "reserva" invisível (com todos os textos possíveis)
@@ -131,7 +131,7 @@ body {
 .desc-corpo {
   display: grid;
   padding: 16px 18px 20px;
-  font-size: 25px;
+  font-size: 32px;
 }
 
 .desc-texto,
@@ -161,7 +161,7 @@ body {
   display: block;
   margin-bottom: 6px;
   font-family: var(--fonte-titulo);
-  font-size: 10px;
+  font-size: 15px;
   color: var(--amarelo);
 }
 
@@ -173,13 +173,13 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 220px;
-  height: 60px;
+  min-width: 280px;
+  height: 72px;
   margin: var(--px) var(--px) 12px;
   padding: 0 24px;
   border: 0;
   font-family: var(--fonte-titulo);
-  font-size: 18px;
+  font-size: 24px;
   color: var(--branco);
   background: var(--azul);
   cursor: pointer;
@@ -235,7 +235,7 @@ body {
 .status {
   min-height: 1.4em;
   font-family: var(--fonte-titulo);
-  font-size: 10px;
+  font-size: 16px;
   line-height: 1.4;
   text-align: center;
   color: var(--amarelo);
@@ -351,7 +351,7 @@ body {
   display: block;
   padding: 14px 6px 12px;
   font-family: var(--fonte-titulo);
-  font-size: 12px;
+  font-size: 18px;
   line-height: 1.4;
   background: var(--cor-escura);
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
@@ -425,7 +425,7 @@ body {
 
 @media (max-width: 480px) {
   .painel-topo h2 {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .painel-icone {
@@ -434,7 +434,7 @@ body {
   }
 
   .card-nome {
-    font-size: 10px;
+    font-size: 13px;
   }
 }
 
